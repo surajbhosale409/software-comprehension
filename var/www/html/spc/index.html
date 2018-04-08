@@ -1,0 +1,94 @@
+<html>
+<head>
+	<title>Login</title>
+	<script type="text/javascript" src="/js/angular.min.js"></script>
+	<script type="text/javascript" src="/js/index.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+</head>
+<body  ng-app="myApp" ng-controller="myCtrl">
+	<!-- Upper navigation bar starts here-->
+				<nav class="navbar navbar-inverse">
+				  <div class="container-fluid">
+					<div class="navbar-header">
+					  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>                        
+					  </button>
+					  <a class="navbar-brand">Forum</a>
+					</div>
+					<div class="collapse navbar-collapse" id="myNavbar">
+					  <ul class="nav navbar-nav">
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">About</a></li>
+						<li><a href="">hello, {{logged_user}}</a></li>
+						<li ng-show="hide_login_and_signup"><a ng-click="logout()">logout</a></li>
+					  </ul>
+					</div>
+				  </div>
+				</nav>
+				<!-- Upper navigation bar END-->
+				  
+				<!-- Left_side bar div start -->
+				<div class="container-fluid text-center">    
+				  <div class="row content">
+					<div class="col-sm-2 sidenav">
+					<!-- left side bar CODE will be here -->
+				</div>
+				<!-- Left_side bar div end -->
+					
+
+					<!--Topics DIV start (center)-->
+					<div class="col-sm-8 text-left">
+						<!--"start new topic" DIV start-->
+						<div ng-show="hide_login_and_signup">	
+							<h3>new post</h3> 
+							<textarea rows="4" cols="50" ng-model="new_post_text" placeholder="To start a new topic, Write something here.."></textarea>
+							<button ng-click="get_new_post()">submit</button>
+						</div>
+						<!--"start new topic" DIV end-->	
+						<table>
+						<tr ng-repeat="x in topics">
+							<td><h1>{{x.post}}</h1></td>
+							<td><h1><input type="button" ng-click="get_details_about_post(x.comment_id)" value="view"></h1></td>
+						</tr>
+					</table>
+				</div>
+					<!--Topics DIV end  (center)-->
+					
+
+
+
+					<!-- signup/login END (left bar DIV) -->		
+					<div class="col-sm-2 sidenav" ng-show="!hide_login_and_signup">
+					  <div class="well">
+						  	<h2>Login</h2>
+								<input type="text" ng-model="email" placeholder="Email"><br><br>
+								<input type="password" ng-model="password" placeholder="Password"><br><br>
+							<input type="button" value="login" ng-click="login()">
+					  </div>
+
+					  <h3>OR</h3>
+
+					  <div class="well">
+							<h2>Signup</h2>
+							<input type="text" ng-model="username" placeholder="Username"><br><br>
+							<input type="password" ng-model="password" placeholder="Password"><br><br>
+							<input type="password" ng-model="cnf_password" placeholder="Confirm Password"><br><br>
+							<input type="text" ng-model="email" placeholder="Email"><br><br>
+							<input type="button" value="signup" ng-click="signup()">
+					  </div>
+					</div>
+					<!-- signup/login END (left bar  DIV) -->
+				
+				</div>
+				</div>
+				
+				<footer class="container-fluid text-center">
+						&copy; All rights reserved
+					<p>Created by suraj, vishnu and sumit. (pucsd) </p>
+				</footer>
+</body>
+</html>
