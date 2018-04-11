@@ -11,7 +11,7 @@ def deploy():
     os.chdir(cwd)
     os.system("cp data/myforum.conf /etc/apache2/conf-available")
     os.system("a2enconf myforum && service apache2 restart")
-    os.system("mysql -u root -p < data/createDB.sql")
+    os.system("mysql -u root -p < data/initDB.sql")
     os.system("mysql -u root -p forum < data/forum_dump.sql")
     os.system("mysql -u root -p forum_log < data/forum_log_dump.sql")
 
