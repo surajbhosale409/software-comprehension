@@ -1,0 +1,28 @@
+  cpp-5 distro-info-data fakeroot g++-5 gcc-5 groff-base i965-va-driver libaacs0 libalgorithm-diff-perl libalgorithm-diff-xs-perl
+  libalgorithm-merge-perl libapparmor-perl libasan2 libass5 libasyncns0 libatomic1 libauthen-sasl-perl libavc1394-0
+  libavcodec-ffmpeg56 libavformat-ffmpeg56 libavresample-ffmpeg2 libavutil-ffmpeg54 libbdplus0 libbluray1 libboost-filesystem1.58.0
+  libbs2b0 libcaca0 libcapnp-0.5.3 libcc1-0 libcdio-cdda1 libcdio-paranoia1 libcdio13 libcgi-fast-perl libcgi-pm-perl libcilkrts5
+  libcrystalhd3 libdc1394-22 libdpkg-perl libdrm-amdgpu1 libdrm-common libdrm-intel1 libdrm-nouveau2 libdrm-radeon1 libdrm2
+  libdvdnav4 libdvdread4 libegl1-mesa libelf1 libenca0 libencode-locale-perl liberror-perl libevent-core-2.0-5 libfakeroot
+  libfcgi-perl libfftw3-double3 libfile-basedir-perl libfile-desktopentry-perl libfile-fcntllock-perl libfile-listing-perl
+  libfile-mimeinfo-perl libflac8 libfont-afm-perl libfontenc1 libfribidi0 libgbm1 libgcc-5-dev libgl1-mesa-dri libgl1-mesa-glx
+  libglapi-mesa libglib2.0-0 libglib2.0-data libgme0 libgomp1 libgraphite2-3 libgsm1 libguess1 libharfbuzz0b libhtml-form-perl
+  libhtml-format-perl libhtml-parser-perl libhtml-tagset-perl libhtml-template-perl libhtml-tree-perl libhttp-cookies-perl
+  libhttp-daemon-perl libhttp-date-perl libhttp-message-perl libhttp-negotiate-perl libiec61883-0 libio-html-perl
+  libipc-system-simple-perl libisl15 libitm1 libjack-jackd2-0 libllvm5.0 liblsan0 liblua5.2-0
+  liblwp-mediatypes-perl liblwp-protocol-https-perl libmailtools-perl libmirclient9 libmircommon7 libmircore1 libmirprotobuf3
+  libmodplug1 libmp3lame0 libmpc3 libmpdec2 libmpfr4 libmpx0 libnet-dbus-perl libnet-http-perl libnet-smtp-ssl-perl
+  libnet-ssleay-perl libnewt0.52 libnuma1 libogg0 libopenal-data libopenal1 libopencv-core2.4v5 libopencv-imgproc2.4v5 libopenjpeg5
+  libopus0 liborc-0.4-0 libpciaccess0 libpipeline1 libpostproc-ffmpeg53 libprotobuf-lite9v5 libpulse0 libpython3-stdlib libpython3.5
+  libpython3.5-minimal libpython3.5-stdlib libquadmath0 libraw1394-11 librubberband2v5 libsamplerate0 libschroedinger-1.0-0 libshine3
+  libslang2 libsnappy1v5 libsndfile1 libsodium18 libsoxr0 libspeex1 libstdc++-5-dev libswresample-ffmpeg1
+  libswscale-ffmpeg3 libtbb2 libtext-iconv-perl libtheora0 libtie-ixhash-perl libtimedate-perl libtsan0 libtwolame0 libtxc-dxtn-s2tc0
+  libubsan0 liburi-perl libusb-1.0-0 libva-wayland1 libva-x11-1 libva1 libvdpau1 libvorbis0a libvorbisenc2 libwavpack1
+  libwayland-client0 libwayland-cursor0 libwayland-egl1-mesa libwayland-server0 libwww-perl libwww-robotrules-perl
+  libx11-protocol-perl libx11-xcb1 libx264-148 libx265-79 libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-present0 libxcb-shape0
+  libxcb-shm0 libxcb-sync1 libxcb-xfixes0 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxft2 libxi6 libxinerama1 libxkbcommon0
+  libxml-parser-perl libxml-twig-perl libxml-xpathengine-perl libxrandr2 libxrender1 libxshmfence1 libxv1 libxvidcore4 libxxf86dga1
+  libxxf86vm1 libzmq5 libzvbi-common libzvbi0 mesa-va-drivers mesa-vdpau-drivers 
+   patch rtmpdump shared-mime-info va-driver-all vdpau-driver-all vim-common xdg-user-dirs xdg-utils xkb-data php-fpm7.0
+alsa-utils autoconf automake autotools-dev avahi-autoipd bluez bluez-tools build-essential cpp cpp-4.9 dash dialog dpkg-dev g++ g++-4.9 gcc gcc-4.8-base:armhf gcc-4.9 gcc-4.9-base:armhf git git-man gsettings-desktop-schemas libasound2:armhf libasound2-data make man-db ncurses-base ncurses-bin  network-manager ntfs-3g  readline-common screen toilet toilet-fonts unzip vim-runtime whiptail x11-common youtube-dl python3 python3.5 python3-chardet python3-apt python3-minimal python3-pkg-resources
+python3-requests python3-six python3-urllib3 python3.5-minimal  php-common php-mysql php7.0 mesa-va-drivers:amd64 mesa-vdpau-drivers:amd64 gcc-5 g++-5 gcc-5-base:amd64  gcc-6-base:amd64 cpp-5 libapache2-mod-python
