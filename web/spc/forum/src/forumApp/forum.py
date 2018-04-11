@@ -6,7 +6,7 @@ import MySQLdb as db
 
 
 TEMPLATE_DIR = os.path.dirname(__file__)
-mysql_username = "root"
+mysql_username = "www-data"
 mysql_password = "S"
 
 def check_user_password_htpasswd(username,password):
@@ -156,7 +156,7 @@ def hierarchical_comments(root ,level ,header):
         record_html = ""
         id_ = 'id="'+str(root)+'"'
         username = get_user_details_by_id(record[2])
-        record_html += "<h"+header+">"+''.join("&nbsp;" * level)+str(username)+" : "+record[1]+'<h6 align="right"><button id="'+str(root)+'" onclick="reply(this.id)">Reply</button></h6><div id="'+str(root)+'_textarea_reply_div"  hidden><textarea id="'+str(root)+'_textarea_reply"'+'></textarea><button id="'+str(root)+'" onclick="submit_reply(this.id)">Submit Reply</button></div></h'+header+'>'
+        record_html += "<h"+header+">"+''.join("&nbsp;" * level)+str(username)+" : "+record[1]+'<h6 align="right"><button id="'+str(root)+'" onclick="reply(this.id)">Reply</button></h6><div id="'+str(root)+'_textarea_reply_div"  hidden><textarea id="'+str(root)+'_textarea_reply"'+'></textarea><button id="'+str(root)+'" onclick="submit_reply(this.id)">Submit Reply</button></div></h'+header+'><hr>'
         for child in childs(root):          
             record_html += hierarchical_comments(child[0], level+8, "4")
         html += record_html
