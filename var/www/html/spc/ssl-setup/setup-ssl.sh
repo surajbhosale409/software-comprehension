@@ -1,0 +1,11 @@
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt;
+sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048;
+sudo cp ssl-params.conf /etc/apache2/conf-available/ ;
+sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak ;
+sudo cp default-ssl.conf /etc/apache2/sites-available/ ;
+sudo a2enmod ssl ;
+sudo a2enmod headers ;
+sudo a2ensite default-ssl ;
+sudo a2enconf ssl-params ;
+sudo apache2ctl configtest ;
+sudo systemctl restart apache2 ;
