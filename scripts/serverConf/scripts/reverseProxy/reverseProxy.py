@@ -10,9 +10,10 @@ def setupDebian():
     os.system("cp data/000-default.conf /etc/apache2/sites-enabled/000-default.conf  && service apache2 restart")
 
 def setupRHEL():
+    os.system("chmod 777 data/default-site.conf")
     os.system("yum install -y httpd")
-    os.system("data/000-default.conf /etc/httpd/conf.d/default-site.conf")
-    os.system("systemctl restart httpd")
+    os.system("cp data/default-site.conf /etc/httpd/conf.d/default-site.conf")
+    os.system("service httpd restart")
 
 def setup():
     print "Enter OS Debian/RHEL [D/R]"

@@ -15,11 +15,13 @@ if raw_input().lower() == "y":
     reverseProxy.setup()
     sys.exit()
 
+
 #Reading Ip Domain pairs from file "ipDomain"
 status,ipDomainList=ipDomainReader.readIpDomainFile()
 
 if status==False:
     sys.exit()
+
 
 #Setting hosts,hostname and generating spf values
 hostsSpfStatus,spfVals = hostsSpfSetup.hostsSpfSetup(ipDomainList)
@@ -32,6 +34,7 @@ pkgRemover.removePackages()
 #Installing needed packages
 pkgInstaller.installPackages()
 
+
 #Postfix config
 postfix.postfixConfig(ipDomainList[0][1])
 
@@ -43,6 +46,7 @@ modWSGI.wsgiConfig(ipDomainList[0][1])
 
 #Configuring ssl
 sslSetup.setup_ssl()
+
 
 #Starting apache2
 os.system("service apache2 start")
