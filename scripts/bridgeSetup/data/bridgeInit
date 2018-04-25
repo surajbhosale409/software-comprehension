@@ -1,11 +1,11 @@
 #!/bin/sh
 ### BEGIN INIT INFO
 # Provides:          qemu bridge br0
-# Required-Start:    $local_fs $network $named $time $syslog
+# Required-Start:    $all
 # Required-Stop:     $local_fs $network $named $time $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Description:       This is a ARP protocol designed for whatsapp messenger
+# Description:       This is a network bridge between host machine and virtual server [qemu-instance]
 ### END INIT INFO
 
 ip addr add 172.20.0.1/16 dev br0

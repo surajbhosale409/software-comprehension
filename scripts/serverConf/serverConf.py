@@ -2,12 +2,18 @@
 
 import os,sys
 
-libPath=["./scripts/pkgRemover/","./scripts/hostsSpfSetup/","./scripts/ipDomainReader/","./scripts/pkgInstaller","./scripts/postfix/","./scripts/opendkim/","./scripts/modWSGI/" , "./scripts/reverseProxy/"]
+libPath=["./scripts/pkgRemover/","./scripts/hostsSpfSetup/","./scripts/ipDomainReader/","./scripts/pkgInstaller","./scripts/postfix/","./scripts/opendkim/","./scripts/modWSGI/" , "./scripts/reverseProxy/" , "./scripts/sslSetup/"]
 sys.path+=libPath
 
-import pkgRemover,hostsSpfSetup,ipDomainReader,pkgInstaller,postfix,opendkim,modWSGI,reverseProxy
+import pkgRemover,hostsSpfSetup,ipDomainReader,pkgInstaller,postfix,opendkim,modWSGI,reverseProxy,sslSetup
 
 cwd=os.getcwd()
+
+#Check and config if set as reverse proxy
+print "Want to use as reverse proxy? (y/N)"
+if raw_input().lower() == "y":
+    reverseProxy.setup()
+    sys.exit()
 
 #Reading Ip Domain pairs from file "ipDomain"
 status,ipDomainList=ipDomainReader.readIpDomainFile()
@@ -35,6 +41,9 @@ opendkim.opendkimConfig(cwd,ipDomainList)
 #Configuring mod-wsgi
 modWSGI.wsgiConfig(ipDomainList[0][1])
 
+#Configuring ssl
+sslSetup.setup_ssl()
+
 #Starting apache2
 os.system("service apache2 start")
 
@@ -43,11 +52,6 @@ os.system("postfix reload")
 
 #Starting opendkim
 os.system("service opendkim start")
-
-#Check and config if set as reverse proxy
-print "Want to use as reverse proxy? (y/N)"
-if raw_input().lower() == "y":
-    reverseProxy.setup()
 
 print "\n\nDONE!!! Now setup DNS records (A,spf,txt)"
 print "\n\nUse following generated SPF values:"

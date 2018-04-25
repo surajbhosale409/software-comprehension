@@ -6,7 +6,7 @@ if getpass.getuser()!="root":
 
 
 def bridgeSetup():
-    os.system("apt-get install -y bridge-utils ")
+    os.system("apt-get install -y bridge-utils dnsmasq ")
     os.system("cp /etc/network/interfaces data/temp")
     os.system("cat data/temp data/bridge > /etc/network/interfaces")
     os.system("rm data/temp")
