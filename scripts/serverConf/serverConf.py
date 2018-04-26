@@ -12,6 +12,7 @@ cwd=os.getcwd()
 #Check and config if set as reverse proxy
 print "Want to use as reverse proxy? (y/N)"
 if raw_input().lower() == "y":
+    sslSetup.setup_ssl()
     reverseProxy.setup()
     sys.exit()
 
