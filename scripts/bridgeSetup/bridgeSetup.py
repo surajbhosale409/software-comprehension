@@ -16,3 +16,5 @@ def bridgeSetup():
     os.system("update-rc.d bridgeInit defaults")
 
 bridgeSetup()
+
+#qemu-system-x86_64 -m 2048 -net nic -net bridge,br=br0 -hda minimal_debian1gb.img
