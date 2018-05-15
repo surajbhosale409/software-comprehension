@@ -76,7 +76,7 @@ DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
   `comment_id` int(11) NOT NULL AUTO_INCREMENT,
   `comment_text` varchar(1000) NOT NULL,
-  `commenting_user_id` int(11) NOT NULL,
+  `commenting_user_email` varchar(320) NOT NULL,
   `timestamp` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`comment_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
