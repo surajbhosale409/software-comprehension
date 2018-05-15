@@ -1,98 +1,272 @@
 <html>
-<head>
-	<title>Login</title>
-	<script src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/angular.min.js"></script>
-	<script type="text/javascript" src="/js/post.js"></script>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-</head>
-<body  ng-app="myApp" ng-controller="myCtrl">
 
-				<!-- Upper navigation bar starts here-->
-				<nav class="navbar navbar-inverse">
-				  <div class="container-fluid">
-					<div class="navbar-header">
-					  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>                        
-					  </button>
-					  <a class="navbar-brand">Forum</a>
-					</div>
-					<div class="collapse navbar-collapse" id="myNavbar">
-					  <ul class="nav navbar-nav">
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">About</a></li>
-						<li><a href="">hello, {{logged_user}}</a></li>
-						<li ng-show="hide_login_and_signup"><a ng-click="logout()">logout</a></li>						
-					  </ul>
-					</div>
-				  </div>
-				</nav>
-				<!-- Upper navigation bar END-->
-				  
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-animate.js"></script>
+    <script src="js/angular-sanitize.js"></script>
+    <script src="js/ui-bootstrap-tpls-2.5.0.js"></script>
+  </head>
 
-				<!-- Left_side bar div start -->
-				<div class="container-fluid text-center">    
-				  <div class="row content">
-					<div class="col-sm-2 sidenav">
-					<!-- left side bar CODE will be here -->
-				</div>
-				<!-- Left_side bar div end -->
-					
+  <style>
+  ul{
+    font-family: 'Times New Roman';
+    font-size: 18px;
+  }
 
-					<!--Detaild Topics DIV start (center)-->
-					<div id="post_and_comments_div" class="col-sm-8 text-left">
-							<button id="1" onClick="reply(this.id)">B1</button>
-                        <!--<table border="1">
-                            <tr ng-repeat="(k,v) in all_comments">
-                                <td>{{k}}</td>
-                                <td ng-if="is_object(v) == false"> {{ v }} </td>
-                                <td ng-if="is_object(v)">
-                                    <table border="1">
-                                        <tr ng-repeat="(k2,v2) in v">
-                                            <td> {{ k2 }} </td>
-                                            <td> {{ v2 }} </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>-->
-                    </div>
-					<!--Detaild Topics DIV end  (center)-->
-					
+  .text{
+    font-family: 'Times New Roman';
+    font-size: 13px;
+  }
+
+  .postText {
+      display: inline-block;
+  }
+  </style>
+
+  <body>
+    <div id="mycontroller" ng-app="myApp" ng-controller="myCtrl" style="width:100%" >
+
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a
+              class="navbar-brand"
+              style="text-align:center;font-size:400%;font-family:'Times New Roman';cursor:pointer;"
+              ng-click="reload()">
+              Forum
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">About</a></li>
+              <li><a href="">hello, {{username}}</a></li>
+              <li><a style="cursor:pointer" ng-click="logout()">logout</a></li>						
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div style="margin-left:50px;margin-right:50px">
+        <div ng-init="getAllTopics()">
+
+          <table ng-show="index_page">
+            <tbody>
+              <tr style="margin-top:20px;" ng-repeat="topic in AllTopics">
+                <td style="cursor:pointer">
+                  <a style="font-size:170%;font-family:'Times New Roman';"
+                     ng-click="get_details_about_post(topic.comment_id)">
+                    {{topic.comment_text}}
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="col-sm-12" id="post_and_comments_div">
+          </div>
+          <!--<collection collection='treedata' box-show='{{textBoxShow}}' click-fn="ReplyToPost"></collection>-->
+
+          <div style="margin-top:50px;" ng-show="index_page">
+            <textarea
+                                        rows="4"
+                                        cols="50"
+                                        ng-model="new_post"
+                                        placeholder="To start a new topic, Write something here...">
+            </textarea>
+            <button style="font-size:100%;font-family:'Times New Roman'" ng-click="create_new_post()">Post</button>
+          </div>
+        </div>
+
+      </div>
+  </body>
 
 
+  <script>
+   function reply(commentId) {
+      var text_box_id = "#"+commentId+"_textarea_reply_div"
+      $(text_box_id).show();
+      //$("#"+commentId).hide(); 
+      $("[id="+commentId+"]").hide();
+    }
 
-					<!-- signup/login END (left bar DIV) -->		
-					<div class="col-sm-2 sidenav" ng-show="!hide_login_and_signup">
-					  <div class="well">
-						  	<h2>Login</h2>
-								<input type="text" ng-model="email" placeholder="Email"><br><br>
-								<input type="password" ng-model="password" placeholder="Password"><br><br>
-							<input type="button" value="login" ng-click="login()">
-					  </div>
+    function submit_reply(commentId, parentId) {
+      commentid = commentId.split('_')[0]
+      var reqData = {}
+      reqData["email"] = localStorage.getItem('email');
+      reqData["PostText"] = $("#"+commentid+"_textarea_reply").val();
+      reqData["PostType"] = "Child";
+      reqData["parent_id"] = commentid;
 
-					  <h3>OR</h3>
+      $.post("forum/", JSON.stringify(reqData), function(response, status){
+          angular.element('#mycontroller').scope().get_details_about_post(parentId);
+          angular.element('#mycontroller').scope().$apply();
+      });
+    }
 
-					  <div class="well">
-							<h2>Signup</h2>
-							<input type="text" ng-model="username" placeholder="Username"><br><br>
-							<input type="password" ng-model="password" placeholder="Password"><br><br>
-							<input type="password" ng-model="cnf_password" placeholder="Confirm Password"><br><br>
-							<input type="text" ng-model="email" placeholder="Email"><br><br>
-							<input type="button" value="signup" ng-click="signup()">
-					  </div>
-					</div>
-					<!-- signup/login END (left bar  DIV) -->
-				
-				</div>
-				</div>
-				
-				<footer class="container-fluid text-center">
-						&copy; All rights reserved
-					<p>Created by suraj, vishnu and sumit. (pucsd) </p>
-				</footer>
-</body>
+    function edit(commentId) {
+      var text_box_id = "#"+commentId+"_textarea_edit_div";
+      $(text_box_id).show();
+      $("[id="+commentId+"]").hide();
+      $("#"+commentId+"_post").hide(); 
+    }
+
+    function submit_edit(commentId, parentId){
+      commentid = commentId.split('_')[0]
+      var reqData = {}
+      reqData["CommentId"] = commentid;
+      reqData["PostText"] = $("#"+commentid+"_textarea_edit").val();
+
+      $.ajax({
+        url: 'forum/',
+        type: 'PUT',
+        data: JSON.stringify(reqData),
+        contentType: 'application/json',
+            
+        success: function(result) {
+          angular.element('#mycontroller').scope().get_details_about_post(parentId);
+          angular.element('#mycontroller').scope().$apply();
+        }
+      });
+    }
+
+    var app = angular.module('myApp', ['ui.bootstrap']);
+    app.controller('myCtrl', function($rootScope, $scope, $http, $timeout, $interval, $q) {
+      $scope.username = localStorage.getItem('username');
+      $scope.email = localStorage.getItem('email');
+
+      $scope.index_page = true
+      $scope.AllTopics = []
+      $scope.treedata = new Array();
+      $scope.textBoxShow = false;
+
+      $rootScope.reload = function(){
+        window.location.reload();
+      }
+
+      $scope.create_new_post = function(){
+        $http(
+          {
+            url: "forum/",
+            method: 'POST',
+            data: {
+              email: $scope.email,
+              PostText: $scope.new_post,
+              PostType: "Parent"
+            }
+          }
+        ).then(
+          function(response) {
+            console.log(response)
+            alert("Success")
+          },
+          function(response) {
+            console.log(response)
+          }     
+        ) 
+        $scope.new_post = "";
+      }
+
+      $scope.get_details_about_post = function(comment_id){
+        $scope.index_page = false;
+        let isloggedin = localStorage.getItem('username');
+        islogin = true
+        if (!isloggedin)
+          islogin = false
+
+        $http(
+          {
+            url: "forum/",
+            method: 'GET',
+            params: {
+              commentid: comment_id,
+              islogin: islogin
+            }
+          }
+        ).then(
+          function(response) {
+            //$scope.treedata[0] = response.data.responseData;
+            document.getElementById("post_and_comments_div").innerHTML = response.data;
+            console.log(response)
+          },
+          function(response) {
+            console.log(response)
+          }     
+        ) 
+      }
+
+      $scope.getAllTopics = function(){
+        $http(
+          {
+            url: "forum/",
+            method: 'GET',
+          }
+        ).then(
+          function(response) {
+            $scope.AllTopics = response.data.responseData;
+          },
+          function(response) {
+            console.log(response)
+          }     
+        ) 
+      }
+
+      $interval(function () {
+        $scope.getAllTopics();
+      }, 9 *60 * 60);
+
+      $scope.logout = function(){
+          localStorage.clear();
+          window.location.href = "http://myforum.com/index.html";
+      }
+    })
+
+    app.directive('collection', function () {
+      return {
+        restrict: "E",
+        replace: true,
+        scope: {
+          collection: '=',
+          textBoxShow: '@boxShow',
+          clickFn: '&'
+        },
+        template: "<ul><member ng-repeat='member in collection' member='member' box-show='{{textBoxShow}}' click-fn='clickFn()'></member></ul>",
+      }
+    })
+
+    app.directive('member', function ($compile) {
+      return {
+        restrict: "E",
+        replace: true,
+        scope: {
+          member: '=',
+          textBoxShow: '@boxShow',
+          clickFn: '&'
+        },
+        template: "<li> {{member.comment_text}}<br><a style='cursor:pointer;margin-left:200px;font-size:12px' ng-click='textBoxShow=!textBoxShow'>Reply</a> <div ng-show='{{textBoxShow}}'> <textarea rows='4' cols='50'></textarea> </div> </li>",
+        link: function (scope, element, attrs) {
+          if (angular.isArray(scope.member.children)) {
+            console.log(scope.textBoxShow);
+            element.append("<collection collection='member.children' box-show='{{textBoxShow}}' click-fn='clickFn()'></collection>"); 
+            $compile(element.contents())(scope)
+          }
+        }
+      }
+    })
+
+
+    /*template: "<li> {{member.comment_text}}<br><a style='cursor:pointer;margin-left:200px;font-size:12px' ng-click='clickFn()(member)'>Reply</a></li>",*/
+  </script>
+
 </html>
